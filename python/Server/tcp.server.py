@@ -6,16 +6,20 @@ def server_program():
     server_socket.bind((host, port))  
 
     server_socket.listen(2)
-    conn, address = server_socket.accept()
-    print("Connection from: " + str(address))
+    
+    i=1
     while True:
-        data = conn.recv(1024).decode()
-        if not data:
-            break
-        print("from connected user: " + str(data))
-        data = "OKAY47"
-        conn.send(data.encode())  
-
+            print("count" + str(i));
+            conn, address = server_socket.accept()
+            print("Connection from: " + str(address))
+            try:
+                data = conn.recv(1024).decode()
+            except:
+                data="None"
+            print(f"DATA :{data}")
+            
+            i+=1
+        
     conn.close()
 
 
